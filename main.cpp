@@ -225,15 +225,15 @@ void showExperimentResults(I_t I) {
     ExperimentResult R = runExperiment(I);
     double T1 = R.time;
 
-    printf("%s,%s,%s\n", "Result", "Time", "Acceleration");
+    printf("%10s\t %10s\t %10s\n", "Result", "Time", "Acceleration");
 
-    printf("%10g\t%10g\t%10g\n", R.result, R.time, T1/R.time);
+    printf("%10g\t %10g\t% 10g\n", R.result, R.time, T1/R.time);
     // printf("%d,%g,%g\n", 1, R.time, T1 / R.time);
 
     for (int T = 2; T <= omp_get_num_procs(); ++T) {
         set_num_threads(T);
         ExperimentResult result = runExperiment(I);
-        printf("%10g\t%10g\t%10g\n", result.result, result.time, T1/result.time);
+        printf("%10g\t %10g\t %10g\n", result.result, result.time, T1/result.time);
         // printf("%d,%g,%g\n", T, result.time, T1 / result.time);
     }
 
@@ -248,24 +248,24 @@ double integrate_reduction(double a, double b, f_t F)
 int main() {
     //set_num_threads(1);
 
-    std::cout << "integrateDefault" << std::endl;
-    showExperimentResults(integrateDefault);
-    std::cout << "integrateCrit" << std::endl;
-    showExperimentResults(integrateCrit);
-    std::cout << "integrateMutex" << std::endl;
-    showExperimentResults(integrateMutex);
-    std::cout << "integrateArr" << std::endl;
-    showExperimentResults(integrateArr);
-    std::cout << "integrateArrAlign" << std::endl;
-    showExperimentResults(integrateArrAlign);
-    std::cout << "integrateReduction" << std::endl;
-    showExperimentResults(integrateReduction);
-    std::cout << "integratePS" << std::endl;
-    showExperimentResults(integratePS);
-    std::cout << "integrateAtomic" << std::endl;
-    showExperimentResults(integrateAtomic);
+//    std::cout << "integrateDefault" << std::endl;
+//    showExperimentResults(integrateDefault);
+//    std::cout << "integrateCrit" << std::endl;
+//    showExperimentResults(integrateCrit);
+//    std::cout << "integrateMutex" << std::endl;
+//    showExperimentResults(integrateMutex);
+//    std::cout << "integrateArr" << std::endl;
+//    showExperimentResults(integrateArr);
+//    std::cout << "integrateArrAlign" << std::endl;
+//    showExperimentResults(integrateArrAlign);
+//    std::cout << "integrateReduction" << std::endl;
+//    showExperimentResults(integrateReduction);
+//    std::cout << "integratePS" << std::endl;
+//    showExperimentResults(integratePS);
+//    std::cout << "integrateAtomic" << std::endl;
+//    showExperimentResults(integrateAtomic);
 
-//    showExperimentResults(integrate_reduction);
+    showExperimentResults(integrate_reduction);
 
 
     return 0;
