@@ -1,0 +1,4 @@
+C:\Users\ykrop\AppData\Local\JetBrains\CLion2021.2\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" "/cygdrive/d/Users/ykrop/Desktop/Study/LAST TRASH/Parallel programming/First"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /cygdrive/d/Users/ykrop/Desktop/Study/LAST TRASH/Parallel programming/First/cmake-build-debug

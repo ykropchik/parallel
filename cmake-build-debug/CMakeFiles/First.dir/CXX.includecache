@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Users/ykrop/Desktop/Study/LAST TRASH/Parallel programming/First/main.cpp
+thread
+-
+mutex
+-
+vector
+-
+iostream
+-
+omp.h
+-
+reduction.cpp
+/cygdrive/d/Users/ykrop/Desktop/Study/LAST TRASH/Parallel programming/First/reduction.cpp
+
+/cygdrive/d/Users/ykrop/Desktop/Study/LAST TRASH/Parallel programming/First/reduction.cpp
+thread
+-
+vector
+-
+iostream
+-
+
