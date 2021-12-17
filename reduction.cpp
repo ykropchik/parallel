@@ -16,7 +16,7 @@ unsigned get_num_threads();
 void set_num_threads(unsigned T);
 
 auto ceil_div(auto x, auto y) {
-    return (x + x - 1) / y;
+    return (x + y - 1) / y;
 }
 
 template <class ElementType, class BinaryFn>
@@ -109,51 +109,56 @@ requires (
 )
 ElementType reduce_range(ElementType a, ElementType b, std::size_t n, UnaryFn get, BinaryFn reduce_2, ElementType zero) {
     unsigned T = get_num_threads();
-    struct reduction_partial_result_t {
+    struct reduction_partial_result_t
+    {
         alignas(hardware_destructive_interference_size) ElementType value;
     };
     static auto reduction_partial_results =
             std::vector<reduction_partial_result_t>(std::thread::hardware_concurrency(), reduction_partial_result_t{zero});
-    constexpr std::size_t k = 2;
 
-    auto thread_proc = [=](unsigned t) {
+    std::barrier<> bar{T};
+    constexpr std::size_t k = 2;
+    auto thread_proc = [=, &bar](unsigned t)
+    {
+
         auto K = ceil_div(n, k);
         double dx = (b - a) / n;
-        std::size_t Mt = K / T, it1 = K % T;
-        if (t < it1)
+        std::size_t Mt = K / T;
+        std::size_t it1 = K % T;
+
+        if(t < it1)
+        {
             it1 = ++Mt * t;
+        }
         else
-            it1 = Mt * it1 + t; it1 += Mt * t;
+        {
+            it1 = Mt * t + it1;
+        }
         it1 *= k;
         std::size_t mt = Mt * k;
-        auto it2 = it1 + mt;
+        std::size_t it2 = it1 + mt;
+
         ElementType accum = zero;
-        for (std::size_t i = it1; i < it2; ++i)
-            accum = reduce_2(accum, get(a + i * dx));
+        for(std::size_t i = it1; i < it2; i++)
+            accum = reduce_2(accum, get(a + i*dx));
+
         reduction_partial_results[t].value = accum;
-    };
-    auto thread_proc_2_ = [=] (unsigned t, std::size_t s) {
-        if ((t % (s * k)) == 0 && s + t < T)
-            reduction_partial_results[t].value = reduce_2(reduction_partial_results[t].value, reduction_partial_results[t + s].value);
+
+        for(std::size_t s = 1, s_next = 2; s < T; s = s_next, s_next += s_next)
+        {
+            bar.arrive_and_wait();
+            if(((t % s_next) == 0) && (t + s < T))
+                reduction_partial_results[t].value = reduce_2(reduction_partial_results[t].value,
+                                                              reduction_partial_results[t + s].value);
+        }
     };
 
     std::vector<std::thread> threads;
-    for (unsigned t = 1; t < T; ++t)
+    for(unsigned t = 1; t < T; t++)
         threads.emplace_back(thread_proc, t);
     thread_proc(0);
-    for (auto& thread:threads)
+    for(auto& thread : threads)
         thread.join();
-
-    std::size_t s = 1;
-    while (s < T) {
-        for (unsigned t = 1; t < T; ++t)
-            threads[t-1] = std::thread(thread_proc_2_, t, s);
-        thread_proc_2_(0, s);
-        s *= k;
-        for (auto& thread:threads)
-            thread.join();
-    }
-
     return reduction_partial_results[0].value;
 }
 

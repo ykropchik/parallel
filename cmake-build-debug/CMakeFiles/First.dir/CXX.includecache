@@ -17,6 +17,8 @@ iostream
 -
 omp.h
 -
+cstring
+-
 reduction.cpp
 /cygdrive/d/Users/ykrop/Desktop/Study/LAST TRASH/Parallel programming/First/reduction.cpp
 

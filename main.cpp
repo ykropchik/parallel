@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <omp.h>
+#include <cstring>
 #include "reduction.cpp"
 
 #define STEPS 100000000
@@ -123,8 +124,9 @@ double integrateArrAlign(double a, double b, f_t f) {
         unsigned t = (unsigned) omp_get_thread_num();
 #pragma omp single
         {
-            T = (unsigned) get_num_threads();
+            T = (unsigned) omp_get_num_threads();
             accum = (partialSumT *) aligned_alloc(CACHE_LINE, T * sizeof(partialSumT));
+            memset(accum, 0, T*sizeof(*accum));
         }
 
         for (unsigned i = t; i < STEPS; i += T) {
@@ -242,7 +244,8 @@ void showExperimentResults(I_t I) {
 
 double integrate_reduction(double a, double b, f_t F)
 {
-    return reduce_range(a, b, STEPS, F, [](auto x, auto y){return x + y;}, 0.0);
+    double dx = (b-a)/STEPS;
+    return reduce_range(a, b, STEPS, F, [](auto x, auto y){return x + y;}, 0.0)*dx;
 }
 
 int main() {
