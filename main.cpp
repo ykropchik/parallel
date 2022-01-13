@@ -6,7 +6,7 @@
 #include <cstring>
 #include "reduction.cpp"
 
-#define STEPS 1000000000
+#define STEPS 100000000
 #define CACHE_LINE 64u
 #define A -1
 #define B 1
@@ -524,10 +524,11 @@ int main() {
     randomizeExperiment(RandomizeArrayFalseSharing);
     std::cout << "randomize without false sharing" << std::endl;
     randomizeExperiment(RandomizeArray);
-//    std::cout << "fib" << std::endl;
-//    experimentFib();
-//    std::cout << "integrate reduction c++" << std::endl;
-//    showExperimentResults(integrateReduction);
+
+    std::cout << "fib" << std::endl;
+    experimentFib();
+    std::cout << "integrate reduction c++" << std::endl;
+    showExperimentResults(integrateReduction);
 
 //    std::cout << "integrate_omp_dynamic" << std::endl;
 //    showExperimentResults(integrate_omp_dynamic);
