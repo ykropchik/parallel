@@ -502,30 +502,30 @@ void experimentFib() {
 }
 
 int main() {
-//    std::cout << "integrateDefault" << std::endl;
-//    showExperimentResults(integrateDefault);
-//    std::cout << "integrateCrit" << std::endl;
-//    showExperimentResults(integrateCrit);
-//    std::cout << "integrateMutex" << std::endl;
-//    showExperimentResults(integrateMutex);
-//    std::cout << "integrateArr" << std::endl;
-//    showExperimentResults(integrateArr);
-//    std::cout << "integrateArrAlign" << std::endl;
-//    showExperimentResults(integrateArrAlign);
-//    std::cout << "integrateReduction" << std::endl;
-//    showExperimentResults(integrateReduction);
-//    std::cout << "integratePS" << std::endl;
-//    showExperimentResults(integratePS);
-//    std::cout << "integrateAtomic" << std::endl;
-//    showExperimentResults(integrateAtomic);
-//    std::cout << "randomize single" << std::endl;
-//    randomizeExperiment(RandomizeArraySingle);
-//    std::cout << "randomize with false sharing" << std::endl;
-//    randomizeExperiment(RandomizeArrayFalseSharing);
-//    std::cout << "randomize without false sharing" << std::endl;
-//    randomizeExperiment(RandomizeArray);
-//    std::cout << "fib" << std::endl;
-//    experimentFib();
+    std::cout << "integrateDefault" << std::endl;
+    showExperimentResults(integrateDefault);
+    std::cout << "integrateCrit" << std::endl;
+    showExperimentResults(integrateCrit);
+    std::cout << "integrateMutex" << std::endl;
+    showExperimentResults(integrateMutex);
+    std::cout << "integrateArr" << std::endl;
+    showExperimentResults(integrateArr);
+    std::cout << "integrateArrAlign" << std::endl;
+    showExperimentResults(integrateArrAlign);
+    std::cout << "integrateReduction" << std::endl;
+    showExperimentResults(integrateReduction);
+    std::cout << "integratePS" << std::endl;
+    showExperimentResults(integratePS);
+    std::cout << "integrateAtomic" << std::endl;
+    showExperimentResults(integrateAtomic);
+    std::cout << "randomize single" << std::endl;
+    randomizeExperiment(RandomizeArraySingle);
+    std::cout << "randomize with false sharing" << std::endl;
+    randomizeExperiment(RandomizeArrayFalseSharing);
+    std::cout << "randomize without false sharing" << std::endl;
+    randomizeExperiment(RandomizeArray);
+    std::cout << "fib" << std::endl;
+    experimentFib();
     std::cout << "integrate reduction c++" << std::endl;
     showExperimentResults(integrateReduction);
 

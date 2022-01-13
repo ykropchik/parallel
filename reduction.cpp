@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <barrier>
+#include <condition_variable>
 
 #ifdef __cpp_lib_hardware_interference_size
     using std::hardware_constructive_interference_size;
@@ -18,6 +19,31 @@ void set_num_threads(unsigned T);
 auto ceil_div(auto x, auto y) {
     return (x + y - 1) / y;
 }
+
+//class Barrier {
+//    bool lock_oddity = false;
+//    unsigned T;
+//    const unsigned Tmax;
+//    std::condition_variable cv;
+//    std::mutex mtx;
+//
+//public:
+//    void arrive_and_wait() {
+//        std::unique_lock lock(mtx);
+//
+//        if (--T == 0) {
+//            // lock_oddity = lock_oddity;
+//            T = Tmax;
+//            cv.notify_all();
+//        } else {
+//            auto my_lock = lock_oddity;
+//            while (my_lock == lock_oddity) {
+//                cv.wait(lock);
+//            }
+//        }
+//
+//    }
+//};
 
 template <class ElementType, class BinaryFn>
 ElementType reduce_vector(const ElementType* V, std::size_t n, BinaryFn f, ElementType zero) {
