@@ -436,7 +436,7 @@ unsigned Fibonacci_omp(unsigned n) {
 }
 
 ExperimentResult runRandomizeExperiment(r_t f) {
-    size_t ArrayLength = 100000;
+    size_t ArrayLength = 1000000;
     unsigned Array[ArrayLength];
     unsigned Seed = 100;
 
@@ -502,8 +502,8 @@ void experimentFib() {
 }
 
 int main() {
-    std::cout << "integrateDefault" << std::endl;
-    showExperimentResults(integrateDefault);
+//    std::cout << "integrateDefault" << std::endl;
+//    showExperimentResults(integrateDefault);
     std::cout << "integrateCrit" << std::endl;
     showExperimentResults(integrateCrit);
     std::cout << "integrateMutex" << std::endl;
@@ -524,10 +524,10 @@ int main() {
     randomizeExperiment(RandomizeArrayFalseSharing);
     std::cout << "randomize without false sharing" << std::endl;
     randomizeExperiment(RandomizeArray);
-    std::cout << "fib" << std::endl;
-    experimentFib();
-    std::cout << "integrate reduction c++" << std::endl;
-    showExperimentResults(integrateReduction);
+//    std::cout << "fib" << std::endl;
+//    experimentFib();
+//    std::cout << "integrate reduction c++" << std::endl;
+//    showExperimentResults(integrateReduction);
 
 //    std::cout << "integrate_omp_dynamic" << std::endl;
 //    showExperimentResults(integrate_omp_dynamic);
