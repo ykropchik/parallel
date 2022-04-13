@@ -258,7 +258,7 @@ double RandomizeArraySingle(unsigned seed, unsigned* V, size_t n, unsigned min, 
         Sum += V[i];
     }
 
-    // printArray(V, n);
+    printArray(V, n);
     return (double)Sum/(double)n;
 }
 
@@ -504,42 +504,42 @@ void experimentFib() {
 int main() {
 //    std::cout << "integrateDefault" << std::endl;
 //    showExperimentResults(integrateDefault);
-    std::cout << "integrateCrit" << std::endl;
-    showExperimentResults(integrateCrit);
-    std::cout << "integrateMutex" << std::endl;
-    showExperimentResults(integrateMutex);
-    std::cout << "integrateArr" << std::endl;
-    showExperimentResults(integrateArr);
-    std::cout << "integrateArrAlign" << std::endl;
-    showExperimentResults(integrateArrAlign);
-    std::cout << "integrateReduction" << std::endl;
-    showExperimentResults(integrateReduction);
-    std::cout << "integratePS" << std::endl;
-    showExperimentResults(integratePS);
-    std::cout << "integrateAtomic" << std::endl;
-    showExperimentResults(integrateAtomic);
-    std::cout << "randomize single" << std::endl;
-    randomizeExperiment(RandomizeArraySingle);
-    std::cout << "randomize with false sharing" << std::endl;
-    randomizeExperiment(RandomizeArrayFalseSharing);
-    std::cout << "randomize without false sharing" << std::endl;
-    randomizeExperiment(RandomizeArray);
-
-    std::cout << "fib" << std::endl;
-    experimentFib();
-    std::cout << "integrate reduction c++" << std::endl;
-    showExperimentResults(integrateReduction);
+//    std::cout << "integrateCrit" << std::endl;
+//    showExperimentResults(integrateCrit);
+//    std::cout << "integrateMutex" << std::endl;
+//    showExperimentResults(integrateMutex);
+//    std::cout << "integrateArr" << std::endl;
+//    showExperimentResults(integrateArr);
+//    std::cout << "integrateArrAlign" << std::endl;
+//    showExperimentResults(integrateArrAlign);
+//    std::cout << "integrateReduction" << std::endl;
+//    showExperimentResults(integrateReduction);
+//    std::cout << "integratePS" << std::endl;
+//    showExperimentResults(integratePS);
+//    std::cout << "integrateAtomic" << std::endl;
+//    showExperimentResults(integrateAtomic);
+//    std::cout << "randomize single" << std::endl;
+//    randomizeExperiment(RandomizeArraySingle);
+//    std::cout << "randomize with false sharing" << std::endl;
+//    randomizeExperiment(RandomizeArrayFalseSharing);
+//    std::cout << "randomize without false sharing" << std::endl;
+//    randomizeExperiment(RandomizeArray);
+//
+//    std::cout << "fib" << std::endl;
+//    experimentFib();
+//    std::cout << "integrate reduction c++" << std::endl;
+//    showExperimentResults(integrateReduction);
 
 //    std::cout << "integrate_omp_dynamic" << std::endl;
 //    showExperimentResults(integrate_omp_dynamic);
 
-//    size_t ArrayLength = 16;
-//    unsigned Array[ArrayLength];
-//    unsigned Seed = 100;
+    size_t ArrayLength = 1000;
+    unsigned Array[ArrayLength];
+    unsigned Seed = 42;
 //
 //    set_num_threads(2);
 //    cout << RandomizeArraySingle(Seed, (unsigned *)&Array, ArrayLength, 1, 255) << endl;
-//    cout << RandomizeArrayFallSharing(Seed, (unsigned *)&Array, ArrayLength, 1, 255) << endl;
+      cout << RandomizeArrayFalseSharing(Seed, (unsigned *)&Array, ArrayLength, 1, 255) << endl;
 
     return 0;
 }
